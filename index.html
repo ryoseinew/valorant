@@ -5,14 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VALORANT - 初心者向けガイド</title>
     <style>
-        /* 優しい色合いとおしゃれなデザイントーンの定義 */
+        /* 優しい色合いとおしゃれなトーン、文字の見やすさを両立 */
         :root {
-            --bg-color: #f7f9fa;
+            --bg-color: #f4f7f9;
             --main-pink: #fbcbc9;
             --main-blue: #c5dbe1;
-            --text-dark: #333d47;
+            --text-main: #1a2530; /* 文字をより濃く、はっきりと */
+            --text-muted: #4a5568; /* サブテキストも視認性の高い濃さに */
             --text-light: #ffffff;
-            --accent-cream: #fcf8f2;
+            --accent-cream: #fbf7f0;
+            --border-color: #d1dcde;
         }
 
         * {
@@ -24,47 +26,49 @@
         body {
             font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif;
             background-color: var(--bg-color);
-            color: var(--text-dark);
+            color: var(--text-main);
             line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
         }
 
         /* ヘッダー */
         header {
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: rgba(255, 255, 255, 0.95);
             padding: 20px;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .logo {
-            font-weight: bold;
-            font-size: 1.5rem;
+            font-weight: 900;
+            font-size: 1.6rem;
             letter-spacing: 2px;
-            color: var(--text-dark);
+            color: var(--text-main);
         }
 
         nav a {
             text-decoration: none;
-            color: var(--text-dark);
+            color: var(--text-main);
+            font-weight: bold;
             margin-left: 20px;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             transition: color 0.3s;
         }
 
         nav a:hover {
-            color: var(--main-pink);
+            color: #d46a6a; /* ホバー時は少し濃いめのピンクで目立たせる */
         }
 
         /* メインビジュアル */
         .hero {
-            height: 80vh;
-            background: linear-gradient(135deg, var(--main-blue), var(--main-pink));
+            height: 70vh;
+            background: linear-gradient(135deg, #a8ced8, #f5b3b1); /* グラデーションを少し鮮やかに */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -72,36 +76,29 @@
             padding: 0 20px;
             margin-top: 60px;
             position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: "";
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 70%);
-            top: -50%;
-            left: -50%;
         }
 
         .hero-content {
             position: relative;
             z-index: 1;
+            background: rgba(255, 255, 255, 0.2); /* 文字を読みやすくするためのうっすらとした背景 */
+            padding: 30px 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(5px);
         }
 
         .hero h1 {
-            font-size: 3.5rem;
-            color: var(--text-light);
-            letter-spacing: 4px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            margin-bottom: 10px;
+            font-size: 4rem;
+            color: var(--text-main); /* タイトルを黒系にしてはっきりと */
+            letter-spacing: 6px;
+            margin-bottom: 15px;
+            font-weight: 900;
         }
 
         .hero p {
-            font-size: 1.2rem;
-            color: var(--text-light);
-            opacity: 0.9;
+            font-size: 1.3rem;
+            color: var(--text-main);
+            font-weight: bold;
         }
 
         /* 共通セクションスタイル */
@@ -113,11 +110,13 @@
 
         .section-title {
             text-align: center;
-            font-size: 2rem;
-            margin-bottom: 50px;
+            font-size: 2.2rem;
+            color: var(--text-main);
+            margin-bottom: 60px;
             position: relative;
             padding-bottom: 15px;
             letter-spacing: 2px;
+            font-weight: bold;
         }
 
         .section-title::after {
@@ -126,9 +125,9 @@
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 50px;
-            height: 3px;
-            background-color: var(--main-pink);
+            width: 60px;
+            height: 4px;
+            background-color: #e58a87;
             border-radius: 2px;
         }
 
@@ -143,7 +142,8 @@
             background: white;
             padding: 40px 30px;
             border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            border: 1px solid rgba(0,0,0,0.05);
             text-align: center;
             transition: transform 0.3s;
         }
@@ -153,8 +153,16 @@
         }
 
         .feature-card h3 {
-            margin-bottom: 15px;
-            color: var(--text-dark);
+            margin-bottom: 20px;
+            color: var(--text-main);
+            font-size: 1.4rem;
+            font-weight: bold;
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            text-align: left;
+            font-size: 1rem;
         }
 
         /* ルールセクション */
@@ -167,15 +175,28 @@
 
         .rules-text {
             flex: 1;
-            min-wIdth: 300px;
+            min-width: 300px;
+        }
+
+        .rules-text p {
+            font-size: 1.2rem;
+            color: var(--text-main);
         }
 
         .rules-text ol {
             padding-left: 20px;
+            margin-top: 20px;
         }
 
         .rules-text li {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+            color: var(--text-muted);
+        }
+
+        .rules-text strong {
+            color: var(--text-main);
+            font-size: 1.1rem;
         }
 
         .rules-img {
@@ -183,7 +204,7 @@
             min-width: 300px;
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
         }
 
         .rules-img img {
@@ -195,7 +216,7 @@
         /* キャラクター説明 */
         .characters-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
         }
 
@@ -203,12 +224,13 @@
             background-color: #fff;
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.02);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.04);
+            border: 1px solid rgba(0,0,0,0.05);
         }
 
         .char-img {
-            height: 250px;
-            background-color: var(--accent-cream);
+            height: 320px; /* キャラクターが見えやすいように高さを少し拡張 */
+            background-color: #101823; /* 公式イラストが映えるように背景をダークに */
             position: relative;
             overflow: hidden;
         }
@@ -217,38 +239,52 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: top center; /* 顔がしっかり映るように調整 */
         }
 
         .char-info {
             padding: 25px;
+            background-color: white;
         }
 
         .char-role {
-            font-size: 0.8rem;
-            color: #999;
+            font-size: 0.85rem;
+            color: #d46a6a; /* ロール名を濃いめのピンクにしてはっきりと */
+            font-weight: bold;
             text-transform: uppercase;
             letter-spacing: 1px;
+            display: inline-block;
+            margin-bottom: 5px;
         }
 
         .char-name {
-            font-size: 1.3rem;
-            margin: 5px 0 10px 0;
+            font-size: 1.5rem;
+            color: var(--text-main);
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .char-info p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
         }
 
         /* フッター */
         footer {
-            background-color: var(--text-dark);
+            background-color: var(--text-main);
             color: var(--text-light);
             text-align: center;
             padding: 40px 20px;
-            font-size: 0.9rem;
-            opacity: 0.9;
+            font-size: 0.95rem;
         }
 
         /* レスポンシブ対応 */
         @media (max-width: 768px) {
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 2.8rem;
+            }
+            .hero-content {
+                padding: 20px;
             }
             .rules-container {
                 flex-direction: column-reverse;
@@ -300,7 +336,7 @@
             <h2 class="section-title">簡単なゲームルール</h2>
             <div class="rules-container">
                 <div class="rules-text">
-                    <p style="margin-bottom: 20px; font-weight: bold;">「攻撃」と「防衛」に分かれて戦うシンプルなルールです。</p>
+                    <p style="font-weight: bold;">「攻撃」と「防衛」に分かれて戦うシンプルなルールです。</p>
                     <ol>
                         <li><strong>5対5の対戦:</strong> プレイヤーは13ラウンドを先取したチームが勝利となります。前半と後半で攻撃・防衛が入れ替わります。</li>
                         <li><strong>攻撃側の目的:</strong> 「スパイク（爆弾）」と呼ばれる装置をマップ内の指定エリアに設置し、爆破させるか、敵チームを全滅させれば勝利。</li>
@@ -319,31 +355,31 @@
         <div class="characters-grid">
             <div class="char-card">
                 <div class="char-img">
-                    <img src="https://images.unsplash.com/photo-1560253023-3ec5d502959f?auto=format&fit=crop&w=400&q=80" alt="デュエリスト">
+                    <img src="https://images.contentstack.io/v3/assets/blt731acb42bb3d1659/blt29f4bfce1054e174/5ebc8343511aa14481402a3a/V_AGENTS_512x512_Jett.png" alt="ジェット">
                 </div>
                 <div class="char-info">
                     <span class="char-role">デュエリスト</span>
-                    <h3 class="char-name">ジェット</h3>
+                    <h3 class="char-name">ジェット (Jett)</h3>
                     <p>素早い動きで前線を切り開き、敵を翻弄するアタッカー。機動力を活かした華麗なプレイが魅力です。</p>
                 </div>
             </div>
             <div class="char-card">
                 <div class="char-img">
-                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=400&q=80" alt="センチネル">
+                    <img src="https://images.contentstack.io/v3/assets/blt731acb42bb3d1659/blt566d6c1b17ef31e5/5ebc83884172465228d1f160/V_AGENTS_512x512_Sage.png" alt="セージ">
                 </div>
                 <div class="char-info">
                     <span class="char-role">センチネル</span>
-                    <h3 class="char-name">セージ</h3>
+                    <h3 class="char-name">セージ (Sage)</h3>
                     <p>味方の体力を回復したり、氷の壁を作って敵の進行を遅らせたりする防衛の要。チームを支える優しい守護者です。</p>
                 </div>
             </div>
             <div class="char-card">
                 <div class="char-img">
-                    <img src="https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?auto=format&fit=crop&w=400&q=80" alt="イニシエーター">
+                    <img src="https://images.contentstack.io/v3/assets/blt731acb42bb3d1659/bltf11234f4775729b7/5ebc839f6580da582da3b406/V_AGENTS_512x512_Sova.png" alt="ソーヴァ">
                 </div>
                 <div class="char-info">
                     <span class="char-role">イニシエーター</span>
-                    <h3 class="char-name">ソーヴァ</h3>
+                    <h3 class="char-name">ソーヴァ (Sova)</h3>
                     <p>弓矢を使って壁の向こうにいる敵の位置を特定する索敵のプロ。情報戦でチームを勝利へと導きます。</p>
                 </div>
             </div>
@@ -351,7 +387,7 @@
     </section>
 
     <footer>
-        <p>&copy; 2026 VALORANT Fan Page. Designed with soft tones.</p>
+        <p>&copy; 2026 VALORANT Fan Page. Designed with high contrast & soft tones.</p>
     </footer>
 
 </body>
