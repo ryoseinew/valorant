@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VALORANT - 初心者向けガイド</title>
+    <style>
+        /* 優しい色合いとおしゃれなデザイントーンの定義 */
+        :root {
+            --bg-color: #f7f9fa;
+            --main-pink: #fbcbc9;
+            --main-blue: #c5dbe1;
+            --text-dark: #333d47;
+            --text-light: #ffffff;
+            --accent-cream: #fcf8f2;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            line-height: 1.8;
+        }
+
+        /* ヘッダー */
+        header {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            color: var(--text-dark);
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            margin-left: 20px;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--main-pink);
+        }
+
+        /* メインビジュアル */
+        .hero {
+            height: 80vh;
+            background: linear-gradient(135deg, var(--main-blue), var(--main-pink));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 20px;
+            margin-top: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 70%);
+            top: -50%;
+            left: -50%;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            color: var(--text-light);
+            letter-spacing: 4px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            opacity: 0.9;
+        }
+
+        /* 共通セクションスタイル */
+        section {
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 50px;
+            position: relative;
+            padding-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background-color: var(--main-pink);
+            border-radius: 2px;
+        }
+
+        /* 魅力セクション */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-card h3 {
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        /* ルールセクション */
+        .rules-container {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+
+        .rules-text {
+            flex: 1;
+            min-wIdth: 300px;
+        }
+
+        .rules-text ol {
+            padding-left: 20px;
+        }
+
+        .rules-text li {
+            margin-bottom: 15px;
+        }
+
+        .rules-img {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .rules-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* キャラクター説明 */
+        .characters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .char-card {
+            background-color: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.02);
+        }
+
+        .char-img {
+            height: 250px;
+            background-color: var(--accent-cream);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .char-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .char-info {
+            padding: 25px;
+        }
+
+        .char-role {
+            font-size: 0.8rem;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .char-name {
+            font-size: 1.3rem;
+            margin: 5px 0 10px 0;
+        }
+
+        /* フッター */
+        footer {
+            background-color: var(--text-dark);
+            color: var(--text-light);
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* レスポンシブ対応 */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .rules-container {
+                flex-direction: column-reverse;
+            }
+            section {
+                padding: 60px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">VALORANT</div>
+        <nav>
+            <a href="#about">魅力</a>
+            <a href="#rules">ルール</a>
+            <a href="#characters">キャラクター</a>
+        </nav>
+    </header>
+
+    <div class="hero">
+        <div class="hero-content">
+            <h1>VALORANT</h1>
+            <p>仲間と共につむぐ、洗練されたタクティカルシューター</p>
+        </div>
+    </div>
+
+    <section id="about">
+        <h2 class="section-title">VALORANTの魅力</h2>
+        <div class="features">
+            <div class="feature-card">
+                <h3>1. 白熱するチームプレイ</h3>
+                <p>5対5で戦う緊迫したゲーム展開。チームメイトとの作戦や連携が勝利への鍵を握ります。一瞬の判断が勝敗を分ける興奮を味わえます。</p>
+            </div>
+            <div class="feature-card">
+                <h3>2. 無限の戦略性</h3>
+                <p>正確な銃撃戦（ガンプレイ）だけでなく、各キャラクターが持つ独自の「アビリティ」を組み合わせることで、あなただけの戦略を描くことができます。</p>
+            </div>
+            <div class="feature-card">
+                <h3>3. 魅力的な世界観</h3>
+                <p>近未来の地球を舞台にしたスタイリッシュなアートスタイル。洗練されたUIやデザインが、プレイする楽しさを引き立てます。</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="rules" style="background-color: var(--accent-cream);">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <h2 class="section-title">簡単なゲームルール</h2>
+            <div class="rules-container">
+                <div class="rules-text">
+                    <p style="margin-bottom: 20px; font-weight: bold;">「攻撃」と「防衛」に分かれて戦うシンプルなルールです。</p>
+                    <ol>
+                        <li><strong>5対5の対戦:</strong> プレイヤーは13ラウンドを先取したチームが勝利となります。前半と後半で攻撃・防衛が入れ替わります。</li>
+                        <li><strong>攻撃側の目的:</strong> 「スパイク（爆弾）」と呼ばれる装置をマップ内の指定エリアに設置し、爆破させるか、敵チームを全滅させれば勝利。</li>
+                        <li><strong>防衛側の目的:</strong> 攻撃側のスパイク設置を阻止するか、設置されたスパイクを制限時間内に解除、または敵を全滅させれば勝利。</li>
+                    </ol>
+                </div>
+                <div class="rules-img">
+                    <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=600&q=80" alt="ゲームイメージ">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="characters">
+        <h2 class="section-title">キャラクター紹介</h2>
+        <div class="characters-grid">
+            <div class="char-card">
+                <div class="char-img">
+                    <img src="https://images.unsplash.com/photo-1560253023-3ec5d502959f?auto=format&fit=crop&w=400&q=80" alt="デュエリスト">
+                </div>
+                <div class="char-info">
+                    <span class="char-role">デュエリスト</span>
+                    <h3 class="char-name">ジェット</h3>
+                    <p>素早い動きで前線を切り開き、敵を翻弄するアタッカー。機動力を活かした華麗なプレイが魅力です。</p>
+                </div>
+            </div>
+            <div class="char-card">
+                <div class="char-img">
+                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=400&q=80" alt="センチネル">
+                </div>
+                <div class="char-info">
+                    <span class="char-role">センチネル</span>
+                    <h3 class="char-name">セージ</h3>
+                    <p>味方の体力を回復したり、氷の壁を作って敵の進行を遅らせたりする防衛の要。チームを支える優しい守護者です。</p>
+                </div>
+            </div>
+            <div class="char-card">
+                <div class="char-img">
+                    <img src="https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?auto=format&fit=crop&w=400&q=80" alt="イニシエーター">
+                </div>
+                <div class="char-info">
+                    <span class="char-role">イニシエーター</span>
+                    <h3 class="char-name">ソーヴァ</h3>
+                    <p>弓矢を使って壁の向こうにいる敵の位置を特定する索敵のプロ。情報戦でチームを勝利へと導きます。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 VALORANT Fan Page. Designed with soft tones.</p>
+    </footer>
+
+</body>
+</html>
